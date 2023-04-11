@@ -1,0 +1,37 @@
+<div class="container pt-3 mt-5">
+  <div class="row pt-4 d-flex justify-content-center">
+      <div class="col-md-6">
+        <h1 class="d-flex justify-content-center text-white">Todo List</h1>
+        <div class="d-flex justify-content-center">
+          <input class="form-control" aria-labelledby="new todo item" type="text" [(ngModel)]="newTodo" placeholder="add a new todo list item"/>
+          <i class="form-control fa-sharp fa-solid fa-square-plus w-auto" (click)="onAddTodo(newTodo)"></i>
+          <div style="width: 15px"></div>
+          <select class="form-control w-25 px-1 text-center ml-2" (change)="onChange($event)">
+            <option *ngFor="let data of state" [value]="data">{{data}}</option>
+          </select>
+        </div>
+
+      </div>
+  </div>
+  <div class="row pt-4 d-flex justify-content-center">
+      <div class="col-md-6">
+        <ng-container *ngIf="!todoItem.length">
+          <h5 class="text-white text-center">No todo Items found</h5>
+        </ng-container>
+        <ng-container *ngIf="todoItem.length">
+          <ul class="px-0">
+            <li *ngFor="let data of todoItem | filter: term; let i = index;"
+              class="d-flex justify-content-center p-2 mb-2"
+              [ngClass]="{'bg-success': data.completed, 'text-white': data.completed, 'bg-white': !data.completed }">
+              <span class="flex-grow-1">{{data.item}}</span>
+              <i class="fa-solid fa-user-check" (click)="onAction($event, i, 'check')"></i>
+              <div style="width: 15px"></div>
+              <i class="fa-sharp fa-solid fa-trash" (click)="onAction($event, i, 'trash')"></i>
+            </li>
+          </ul>
+        </ng-container>
+      </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
