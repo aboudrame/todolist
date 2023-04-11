@@ -1,4 +1,6 @@
 # TODO List
+**Tech stacks: Angular, fontawesome, bootstrap**
+
 This is a simple TODO List that performs simple tasks including:
 
 1. Adding a new todo item
